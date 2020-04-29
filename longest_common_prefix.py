@@ -12,3 +12,7 @@ class Solution:
                     return result
             result += first_string_letter
         return result
+
+
+print(longestCommonPrefix([]))
+print(longestCommonPrefix(["flower", "flow", "flight"]))
