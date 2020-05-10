@@ -1,4 +1,6 @@
 # 62. Unique Paths: MEDIUM
+# https://leetcode.com/problems/unique-paths/
+
 
 # A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 
@@ -28,7 +30,7 @@
 
 
 
-# Both solutions I get a time limit exceeded - neet to try finding a DP Solution?
+# DP Solution works
 
 def uniquePaths(m,n):
     result = 0
@@ -66,9 +68,26 @@ def uniquePaths1(m,n):
         visited.remove((row,col))
     return result
 
+def uniquePathsDP(m,n):
+    cache = {(m,n): 1}
+    def paths(row, col):
+        if row > m or col > n:
+            return 0
+        if (row, col) in cache:
+            return cache[(row, col)]
+        if row == m and n == col:
+            return cache[(row, col)] + 1
+        result = 0
+        result += paths(row+1, col)
+        result += paths(row, col+1)
+        cache[(row, col)] = result
+        return result
+    paths(1,1)
+    return cache[1,1]
 
 
 
 
-print(uniquePaths1(3, 2), 3)
-print(uniquePaths1(7, 3), 28)
+
+print(uniquePathsDP(3, 2), 3)
+print(uniquePathsDP(7, 3), 28)
