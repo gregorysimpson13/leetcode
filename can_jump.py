@@ -61,6 +61,16 @@ def canJumpGD(nums) -> bool:
         return result
     return jump(0)
 
-print(canJumpGD([2,3,1,1,4]), True)
-print(canJumpGD([3,2,1,0,4]), False)
-print(canJumpGD([2,0]), True)
+def canJumpGreedy(nums) -> bool:
+    left, right = 0, nums[0]
+    while left <= right:
+        right = max(right, left + nums[left])
+        left += 1
+        if right >= len(nums):
+            return True
+    return False if left < len(nums) else True
+
+print(canJumpGreedy([2,3,1,1,4]), True)
+print(canJumpGreedy([3,2,1,0,4]), False)
+print(canJumpGreedy([2,0]), True)
+print(canJumpGreedy([0]), True)
