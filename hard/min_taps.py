@@ -1,4 +1,5 @@
-# 1326. Minimum Number of Taps to Open to Water a Garden
+# 1326. Minimum Number of Taps to Open to Water a Garden - HARD
+# https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/
 
 # There is a one-dimensional garden on the x-axis. The garden starts at the point 0 and ends at the point n. (i.e The length of the garden is n).
 

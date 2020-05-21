@@ -1,4 +1,4 @@
-# 155. Min Stack
+# 155. Min Stack - EASY
 
 # https://leetcode.com/problems/min-stack/
 

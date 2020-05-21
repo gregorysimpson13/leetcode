@@ -1,5 +1,5 @@
-# 28. Implement strStr()
-# https: // leetcode.com/problems/implement-strstr/
+# 28. Implement strStr() - EASY
+# https://leetcode.com/problems/implement-strstr/
 
 # Implement strStr().
 

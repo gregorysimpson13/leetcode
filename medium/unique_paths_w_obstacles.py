@@ -1,5 +1,5 @@
-# 63. Unique Paths II
-# https://leetcode.com/problems/unique-paths-ii/submissions/
+# 63. Unique Paths II - MEDIUM
+# https://leetcode.com/problems/unique-paths-ii/
 
 # A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 
