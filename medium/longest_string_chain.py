@@ -1,4 +1,5 @@
 # 1048. Longest String Chain - MEDIUM
+# https://leetcode.com/problems/longest-string-chain/
 
 # Given a list of words, each word consists of English lowercase letters.
 
@@ -28,12 +29,12 @@ def longestStrChain(words) -> int:
     words_map = {}
     global_max = 1
     for word in words:
-        result = 0
+        result = 1
         for i in range(len(word)):
             substring = word[:i] + word[i+1:]
             if substring in words_map:
-                result = max(result, words_map[substring] + 1, 1)
-        words_map[word] = result if result > 0 else 1
+                result = max(result, words_map[substring] + 1)
+        words_map[word] = result
         global_max = max(result, global_max)
     print (words_map)
     return global_max
