@@ -19,3 +19,7 @@ HARD: https://leetcode.com/problems/number-of-ways-of-cutting-a-pizza/
 ### Permutations
 
 https://leetcode.com/problems/permutation-sequence/
+
+### Binary Search
+
+MEDIUM: https://leetcode.com/problems/guess-number-higher-or-lower-ii/
