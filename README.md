@@ -23,3 +23,7 @@ https://leetcode.com/problems/permutation-sequence/
 ### Pointers
 
 EASY - https://leetcode.com/problems/merge-two-binary-trees/
+
+### Binary Search
+
+MEDIUM: https://leetcode.com/problems/guess-number-higher-or-lower-ii/

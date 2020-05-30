@@ -1,4 +1,4 @@
-# 704. Binary Search
+# 704. Binary Search - EASY
 # https://leetcode.com/problems/binary-search/
 
 # Given a sorted(in ascending order) integer array nums of n elements and a target value, write a function to search target in nums. If target exists, then return its index, otherwise return -1.
@@ -24,8 +24,17 @@
 # The value of each element in nums will be in the range[-9999, 9999].
 
 def search(nums, target) -> int:
-    pass
-
+    left, right = 0, len(nums) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] > target:
+            right = mid - 1
+        else:
+            left = mid + 1
+    return -1
 
 print(search([-1, 0, 3, 5, 9, 12], 9), 4)
 print(search([-1, 0, 3, 5, 9, 12], 2), -1)
+print(search([-1], -1), 0)
