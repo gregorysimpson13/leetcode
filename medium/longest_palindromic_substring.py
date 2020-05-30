@@ -15,7 +15,7 @@
 import time
 
 '''
-substring - must be in sequence and 
+substring - must be in sequence and
                        cbbd
                     /       \
                 bbd          cbb
@@ -25,6 +25,8 @@ substring - must be in sequence and
                         bb
 
 '''
+
+
 def isPalindrome(left, right, s):
     while left < right:
         if s[left] != s[right]:
@@ -32,8 +34,11 @@ def isPalindrome(left, right, s):
         left += 1
         right -= 1
     return True
+
+
 def longestPalindrome(s: str):
     max_global = -1
+
     def recursePalindrome(left, right):
         nonlocal max_global
         if right - left < max_global:
@@ -45,6 +50,8 @@ def longestPalindrome(s: str):
         right_string = recursePalindrome(left, right - 1)
         return left_string if len(left_string) > len(right_string) else right_string
     return recursePalindrome(0, len(s) - 1)
+
+
 def longestPalindromeNew(s: str):
     def recursePalindrome(left, right):
         if isPalindrome(left, right, s):
@@ -55,15 +62,42 @@ def longestPalindromeNew(s: str):
     return recursePalindrome(0, len(s) - 1)
 
 
-
 print(longestPalindrome("babad"), "bab")
 print(longestPalindrome("cbbd"), "bb")
-start1 = time.time()
-print(longestPalindrome("babaddtattarrattatddetartrateedredividerb"))
-end1 = time.time()
-print(end1 - start1)
+# start1 = time.time()
+# print(longestPalindrome("babaddtattarrattatddetartrateedredividerb"))
+# end1 = time.time()
+# print(end1 - start1)
 
-start1 = time.time()
-print(longestPalindromeNew("babaddtattarrattatddetartrateedredividerb"))
-end1 = time.time()
-print(end1 - start1)
+# start1 = time.time()
+# print(longestPalindromeNew("babaddtattarrattatddetartrateedredividerb"))
+# end1 = time.time()
+# print(end1 - start1)
+
+
+def longestPalindrome(s: str) -> int:
+    cache = {}
+
+    def palindrome(start=0, end=len(s)-1) -> str:
+        if (start, end) in cache:
+            return cache[(start, end)]
+        if start == end:
+            cache[(start, end)] = s[start]
+            return s[start]
+        if start > end:
+            cache[(start, end)] = ""
+            return ""
+        if s[start] == s[end]:
+            val = s[start] + palindrome(start+1, end-1) + s[end]
+            cache[(start, end)] = val
+            return val
+        inc_start = palindrome(start+1, end)
+        dec_end = palindrome(start, end-1)
+        cache[(start, end)] = inc_start if len(
+            inc_start) > len(dec_end) else dec_end
+        return cache[(start, end)]
+    return palindrome()
+
+
+print(longestPalindrome("babad"), "bab")
+print(longestPalindrome("babaddtattarrattatddetartrateedredividerb"))

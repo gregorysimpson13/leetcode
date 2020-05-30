@@ -19,3 +19,7 @@ HARD: https://leetcode.com/problems/number-of-ways-of-cutting-a-pizza/
 ### Permutations
 
 https://leetcode.com/problems/permutation-sequence/
+
+### Pointers
+
+EASY - https://leetcode.com/problems/merge-two-binary-trees/
