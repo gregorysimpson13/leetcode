@@ -6,7 +6,9 @@
 
 ### Greedy Algorithms
 
-### Graphs
+### Graphs/Matrix
+
+MEDIUM: https://leetcode.com/problems/spiral-matrix/
 
 ### Dynamic Programming
 
