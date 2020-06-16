@@ -75,7 +75,7 @@ print(longestPalindrome("cbbd"), "bb")
 # print(end1 - start1)
 
 
-def longestPalindrome(s: str) -> int:
+def longestPalindrome(s: str) -> str:
     cache = {}
 
     def palindrome(start=0, end=len(s)-1) -> str:
@@ -99,5 +99,36 @@ def longestPalindrome(s: str) -> int:
     return palindrome()
 
 
+def longestPalindrome(s: str) -> str:
+    if s[::-1] == s: return s
+    leftMax, rightMax = 0, 0
+    for i in range(1, len(s)):
+        left, right = i, i
+        if s[i-1] == s[i]:
+            left = i - 1
+            if i+1 < len(s) and s[i+1] == s[i-1]:
+                right = i + 1
+        while left >= 0 and right < len(s):
+            if s[left] == s[right]:
+                if (rightMax - leftMax) < (right - left):
+                    leftMax = left
+                    rightMax = right
+            if s[left] != s[right]: 
+                break
+            left = left - 1
+            right = right + 1
+    return s[leftMax:rightMax+1]
+            
+        
+
+
+print("\n\nNEW")
 print(longestPalindrome("babad"), "bab")
+print(longestPalindrome("bb"), "bb")
+print(longestPalindrome("ccd"), "cc")
+print(longestPalindrome("dcc"), "cc")
 print(longestPalindrome("babaddtattarrattatddetartrateedredividerb"))
+print(longestPalindrome("aaabaaaa"), "aaabaaa")
+print(longestPalindrome("aaabbaaaa"), "aaabbaaa")
+print(longestPalindrome("azwdzwmwcqzgcobeeiphemqbjtxzwkhiqpbrprocbppbxrnsxnwgikiaqutwpftbiinlnpyqstkiqzbggcsdzzjbrkfmhgtnbujzszxsycmvipjtktpebaafycngqasbbhxaeawwmkjcziybxowkaibqnndcjbsoehtamhspnidjylyisiaewmypfyiqtwlmejkpzlieolfdjnxntonnzfgcqlcfpoxcwqctalwrgwhvqvtrpwemxhirpgizjffqgntsmvzldpjfijdncexbwtxnmbnoykxshkqbounzrewkpqjxocvaufnhunsmsazgibxedtopnccriwcfzeomsrrangufkjfzipkmwfbmkarnyyrgdsooosgqlkzvorrrsaveuoxjeajvbdpgxlcrtqomliphnlehgrzgwujogxteyulphhuhwyoyvcxqatfkboahfqhjgujcaapoyqtsdqfwnijlkknuralezqmcryvkankszmzpgqutojoyzsnyfwsyeqqzrlhzbc"), "sooos")
+print(longestPalindrome("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg") == "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
