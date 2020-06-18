@@ -30,16 +30,16 @@
 # 1 <= arr[i].length <= 26
 # arr[i] contains only lower case English letters.
 
-def maxLength(arr) -> int:
-    max_len = len(arr[0])
-    next_max_len = 0
-    for i in range(1, len(arr)):
-        if len(arr[i]) >= max_len:
-            next_max_len = max_len
-            max_len = len(arr[i])
-        elif len(arr[i]) > next_max_len:
-            next_max_len = len(arr[i])
-    return max_len + next_max_len
+# def maxLength(arr) -> int:
+#     max_len = len(arr[0])
+#     next_max_len = 0
+#     for i in range(1, len(arr)):
+#         if len(arr[i]) >= max_len:
+#             next_max_len = max_len
+#             max_len = len(arr[i])
+#         elif len(arr[i]) > next_max_len:
+#             next_max_len = len(arr[i])
+#     return max_len + next_max_len
 
 
 def maxLengthGood(arr) -> int:
@@ -64,41 +64,49 @@ def maxLengthGood(arr) -> int:
     return max_len
 
 
-def maxLengthDP(arr) -> int:
-    max_len = 0
+def maxLength(arr) -> int:
+    length = 0
+    def find_length(i=0, s=''):
+        if len(set(s)) != len(s): return
+        nonlocal length
+        length = max(length, len(s))
+        for j in range(i, len(arr)):
+            find_length(j+1, s+arr[j])
+    find_length()
+    return length
 
-
+print('THE WAY')
 print(maxLength(["un", "iq", "ue"]), 4)
 print(maxLength(["cha", "r", "act", "ers"]), 6)
 print(maxLength(["abcdefghijklmnopqrstuvwxyz"]), 26)
 print(maxLength(["abcdefghijklmnopqrstuvwxyz", "ab"]), 28)
-print(maxLength([["a", "b", "c", "d", "e", "f", "g", "h",
-                  "i", "j", "k", "l", "m", "n", "o", "p"], "ab"]), 16)
+print(maxLength(["a", "b", "c", "d", "e", "f", "g", "h",
+                  "i", "j", "k", "l", "m", "n", "o", "p", "ab"]), 16)
 
 
-print("\n\nNew Way")
-print(maxLengthGood(["un", "iq", "ue"]), 4)
-print(maxLengthGood(["cha", "r", "act", "ers"]), 6)
-print(maxLengthGood(["abcdefghijklmnopqrstuvwxyz"]), 26)
-print(maxLengthGood(["abcdefghijklmnopqrstuvwxyz", "ab"]), 26)
-print(maxLengthGood(["cha", "r", "act", "ers"]), 6)
-print(maxLengthGood(["yy", "bkhwmpbiisbldzknpm"]), 0)
-print(maxLengthGood(["ab", "cd", "cde", "cdef", "efg", "fgh", "abxyz"]), 11)
-print(maxLengthGood([["a", "b", "c", "d", "e", "f", "g", "h",
-                      "i", "j", "k", "l", "m", "n", "o", "p"], "ab"]), 16)
+# print("\n\nNew Way")
+# print(maxLengthGood(["un", "iq", "ue"]), 4)
+# print(maxLengthGood(["cha", "r", "act", "ers"]), 6)
+# print(maxLengthGood(["abcdefghijklmnopqrstuvwxyz"]), 26)
+# print(maxLengthGood(["abcdefghijklmnopqrstuvwxyz", "ab"]), 26)
+# print(maxLengthGood(["cha", "r", "act", "ers"]), 6)
+# print(maxLengthGood(["yy", "bkhwmpbiisbldzknpm"]), 0)
+# print(maxLengthGood(["ab", "cd", "cde", "cdef", "efg", "fgh", "abxyz"]), 11)
+# print(maxLengthGood([["a", "b", "c", "d", "e", "f", "g", "h",
+#                       "i", "j", "k", "l", "m", "n", "o", "p"], "ab"]), 16)
 
 
-print("\n\nNewest Way")
+# print("\n\nNewest Way")
 
-print(maxLengthGood(["un", "iq", "ue"]), 4)
-print(maxLengthGood(["cha", "r", "act", "ers"]), 6)
-print(maxLengthGood(["abcdefghijklmnopqrstuvwxyz"]), 26)
-print(maxLengthGood(["abcdefghijklmnopqrstuvwxyz", "ab"]), 26)
-print(maxLengthGood(["cha", "r", "act", "ers"]), 6)
-print(maxLengthGood(["yy", "bkhwmpbiisbldzknpm"]), 0)
-print(maxLengthGood(["ab", "cd", "cde", "cdef", "efg", "fgh", "abxyz"]), 11)
-print(maxLengthGood([["a", "b", "c", "d", "e", "f", "g", "h",
-                      "i", "j", "k", "l", "m", "n", "o", "p"], "ab"]), 16)
+# print(maxLengthGood(["un", "iq", "ue"]), 4)
+# print(maxLengthGood(["cha", "r", "act", "ers"]), 6)
+# print(maxLengthGood(["abcdefghijklmnopqrstuvwxyz"]), 26)
+# print(maxLengthGood(["abcdefghijklmnopqrstuvwxyz", "ab"]), 26)
+# print(maxLengthGood(["cha", "r", "act", "ers"]), 6)
+# print(maxLengthGood(["yy", "bkhwmpbiisbldzknpm"]), 0)
+# print(maxLengthGood(["ab", "cd", "cde", "cdef", "efg", "fgh", "abxyz"]), 11)
+# print(maxLengthGood([["a", "b", "c", "d", "e", "f", "g", "h",
+#                       "i", "j", "k", "l", "m", "n", "o", "p"], "ab"]), 16)
 
 
 '''
