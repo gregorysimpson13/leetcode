@@ -35,9 +35,8 @@ def numSquares(n: int) -> int:
     for square in squares:
             if square > n:
                     break
-            for i in range(len(sums)):
-                    backtrack = sums[i-square] + 1 if i-square >= 0 else float('inf')
-                    sums[i] = min(sums[i],backtrack)
+            for i in range(square, len(sums)):
+                    sums[i] = min(sums[i], sums[i-square] + 1)
     return sums[-1]
 
 
