@@ -29,4 +29,22 @@ v              0  1  1  2  3  4  5
 
 
 def numSquares(n: int) -> int:
-    squares = [i**2 for i in range((n//2)+1)]
+    squares = [i**2 for i in range((n//2)+2)]
+    sums = [float('inf') for i in range(n+1)]
+    sums[0] = 0
+    for square in squares:
+            if square > n:
+                    break
+            for i in range(len(sums)):
+                    backtrack = sums[i-square] + 1 if i-square >= 0 else float('inf')
+                    sums[i] = min(sums[i],backtrack)
+    return sums[-1]
+
+
+
+
+print(numSquares(0),0)
+print(numSquares(1),1)
+print(numSquares(12),3)
+print(numSquares(13),2)
+print(numSquares(8441),3)
