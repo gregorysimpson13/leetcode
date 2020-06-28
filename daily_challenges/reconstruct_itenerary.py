@@ -28,27 +28,19 @@
 
 from collections import defaultdict
 def findItinerary(tickets):
-    tickets_lookup = defaultdict(int)
+    result_list = []
+    def dfs(airport):
+        while tickets_dict[airport]:
+            dfs(tickets_dict[airport].pop())
+        result_list.append(airport)
     tickets_dict = defaultdict(list)
     for ticket in tickets:
         from_airport, to_airport = ticket[0], ticket[1]
         tickets_dict[from_airport].append(to_airport)
-        tickets_lookup[from_airport] += 1
-    current_airport = "JFK"
-    result_list = []
-    while current_airport:
-        result_list.append(current_airport)
-        if not tickets_dict[current_airport]:
-            return result_list
-        next_airport_idx, max_flight = None, None
-        for airport_idx in range(len(tickets_dict[current_airport])):
-            airport = tickets_dict[current_airport][airport_idx]
-            if max_flight == None or max_flight < tickets_lookup[airport]:
-                next_airport_idx = airport_idx
-                max_flight = tickets_lookup[airport]
-        current_airport = tickets_dict[current_airport].pop(next_airport_idx)
-        tickets_lookup[current_airport] -= 1
-    return result_list
+    for ticket in tickets_dict.keys():
+        tickets_dict[ticket].sort(reverse=True)
+    dfs("JFK")
+    return result_list[::-1]
 
     
 
@@ -57,7 +49,9 @@ tickets1 = [["MUC", "LHR"], ["JFK", "MUC"], ["SFO", "SJC"], ["LHR", "SFO"]]
 tickets2 = [["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]]
 tickets3 = [["JFK", "LGA"]]
 tickets4 = [["JFK","KUL"],["JFK","NRT"],["NRT","JFK"]]
+tickets5 = [["EZE","AXA"],["TIA","ANU"],["ANU","JFK"],["JFK","ANU"],["ANU","EZE"],["TIA","ANU"],["AXA","TIA"],["TIA","JFK"],["ANU","TIA"],["JFK","TIA"]]
 print(findItinerary(tickets1),end='\n\n')
 print(findItinerary(tickets2),end='\n\n')
 print(findItinerary(tickets3),end='\n\n')
 print(findItinerary(tickets4),end='\n\n') # ["JFK","NRT","JFK","KUL"]
+print(findItinerary(tickets5),end='\n\n') # ["JFK","ANU","EZE","AXA","TIA","ANU","JFK","TIA","ANU","TIA","JFK"]
