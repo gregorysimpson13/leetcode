@@ -40,7 +40,7 @@ def findItinerary(tickets):
         result_list.append(current_airport)
         if not tickets_dict[current_airport]:
             return result_list
-        current_airport = tickets_dict[current_airport]
+        current_airport = tickets_dict[current_airport].pop(0)
     return result_list
 
     
