@@ -33,14 +33,21 @@ def findItinerary(tickets):
     for ticket in tickets:
         from_airport, to_airport = ticket[0], ticket[1]
         tickets_dict[from_airport].append(to_airport)
-        tickets_lookup[to_airport] += 1
+        tickets_lookup[from_airport] += 1
     current_airport = "JFK"
     result_list = []
     while current_airport:
         result_list.append(current_airport)
         if not tickets_dict[current_airport]:
             return result_list
-        current_airport = tickets_dict[current_airport].pop(0)
+        next_airport_idx, max_flight = None, None
+        for airport_idx in range(len(tickets_dict[current_airport])):
+            airport = tickets_dict[current_airport][airport_idx]
+            if max_flight == None or max_flight < tickets_lookup[airport]:
+                next_airport_idx = airport_idx
+                max_flight = tickets_lookup[airport]
+        current_airport = tickets_dict[current_airport].pop(next_airport_idx)
+        tickets_lookup[current_airport] -= 1
     return result_list
 
     
@@ -50,7 +57,7 @@ tickets1 = [["MUC", "LHR"], ["JFK", "MUC"], ["SFO", "SJC"], ["LHR", "SFO"]]
 tickets2 = [["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]]
 tickets3 = [["JFK", "LGA"]]
 tickets4 = [["JFK","KUL"],["JFK","NRT"],["NRT","JFK"]]
-print(findItinerary(tickets1))
-print(findItinerary(tickets2))
-print(findItinerary(tickets3))
-print(findItinerary(tickets4)) # ["JFK","NRT","JFK","KUL"]
+print(findItinerary(tickets1),end='\n\n')
+print(findItinerary(tickets2),end='\n\n')
+print(findItinerary(tickets3),end='\n\n')
+print(findItinerary(tickets4),end='\n\n') # ["JFK","NRT","JFK","KUL"]
