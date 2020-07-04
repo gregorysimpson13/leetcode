@@ -1,5 +1,5 @@
 def prisonAfterNDays(cells, N: int):
-    mod = N % 14
+    mod = ((N-1) % 14) + 1
     for _ in range(mod):
         prev_value = cells[0]
         cells[0] = 0
@@ -10,25 +10,6 @@ def prisonAfterNDays(cells, N: int):
         cells[-1] = 0
     return cells
 
-# print(prisonAfterNDays([0,1,0,1,1,0,0,1], 6))
-# print(prisonAfterNDays([0,1,0,1,1,0,0,1], 454))
-# print(prisonAfterNDays([1,0,0,1,0,0,1,0], 454))
-# print(prisonAfterNDays([1,0,0,1,0,0,1,0], 6))
-# print(prisonAfterNDays([1,0,0,1,0,0,1,0], 1000000000))
-# print(prisonAfterNDays([0,0,0,1,0,0,1,0], 9999999999))
-# print(prisonAfterNDays([0,0,0,1,0,0,1,0], 5))
-# print(prisonAfterNDays([1,0,0,1,0,0,1,0], 1000000000))
-# print(prisonAfterNDays([1,0,0,1,0,0,1,0], 1000000014))
-print(prisonAfterNDays([1,0,0,1,0,0,1,0], 0))
-print(prisonAfterNDays([1,0,0,1,0,0,1,0], 14))
-print(prisonAfterNDays([1,0,0,1,0,0,1,0], 28))
-print(prisonAfterNDays([1,0,0,1,0,0,1,0], 29))
-print(prisonAfterNDays([1,0,0,1,0,0,1,0], 1000000000))
-print(prisonAfterNDays([1,0,0,1,0,0,0,1], 826))
-
-
-
-# [0,0,1,1,1,1,1,0] - 100M
-
-# 
-# [0,1,1,0,1,1,1,0]
+print(prisonAfterNDays([1,0,0,1,0,0,1,0], 1000000000)) # [0,0,1,1,1,1,1,0]
+print(prisonAfterNDays([1,0,0,1,0,0,0,1], 826)) # [0,1,1,0,1,1,1,0]
+print(prisonAfterNDays([0,1,0,1,1,0,0,1], 7)) # [0,0,1,1,0,0,0,0]
