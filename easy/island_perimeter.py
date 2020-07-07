@@ -21,32 +21,31 @@
 
 # Explanation: The perimeter is the 16 yellow stripes in the image below:
 
-def islandPerimeter(grid) -> int:
-    rows, cols = len(grid), len(grid[0])
-    def getPerimeter(y, x, visited=set()) -> int:
-        if (y,x) in visited:
-            return 0
-        if y >= rows or y < 0 or x >= cols or x < 0:
-            return 1
-        print(rows, y, cols, x)
-        if grid[y][x] == 0:
-            return 1
-        visited.add((y,x))
-        result = getPerimeter(y+1, x, visited)
-        result += getPerimeter(y-1, x, visited)
-        result += getPerimeter(y, x-1, visited)
-        result += getPerimeter(y, x+1, visited)
-        return result     
-    def findCell():
-        for y in range(rows):
-            for x in range(cols):
-                if grid[y][x] == 1:
-                    return y, x
-        return -1, -1
-    starty, startx = findCell()
-    if starty == -1:
-        return 0
-    return getPerimeter(starty,startx)
+class Solution:
+    def islandPerimeter(self, grid: List[List[int]]) -> int:
+        if not grid or not grid[0]: return 0
+        perimeters = 0
+        queue = []
+        for row in range(len(grid)):
+            for col in range(len(grid[0])):
+                if grid[row][col] == 1:
+                    queue.append((row,col))
+                    break
+        dr = [-1, 1, 0, 0]
+        dc = [0, 0, -1, 1]
+        seen_set = set()
+        while queue:
+            row, col = queue.pop(0)
+            if (row, col) in seen_set: continue
+            seen_set.add((row, col))
+            for i in range(4):
+                nr = row + dr[i]
+                nc = col + dc[i]
+                if nr >= 0 and nr < len(grid) and nc >= 0 and nc < len(grid[0]) and grid[nr][nc] == 1:           
+                    queue.append((nr,nc))
+                else:
+                    perimeters = perimeters + 1
+        return perimeters
 
 
 
