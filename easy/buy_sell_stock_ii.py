@@ -38,6 +38,7 @@ def maxProfit(prices) -> int:
             current_buy = price
     return profits
 
+from typing import List
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         price = 0
