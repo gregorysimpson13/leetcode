@@ -50,12 +50,12 @@
 # The given board size is always 9x9.
 
 
-
+from typing import List
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         rows_set, cols_set, box_set = [], [], []
         box_mapper = lambda row,col: ((row // 3) * 3) + (col // 3)
-        for i in range(9):
+        for _ in range(9):
             rows_set.append(set())
             cols_set.append(set())
             box_set.append(set())
