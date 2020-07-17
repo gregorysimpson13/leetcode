@@ -47,5 +47,12 @@ class Solution:
                 price = price + (prices[i] - prices[i-1])
         return price
 
+class Solution1:
+    def maxProfit(self, prices: List[int]) -> int:
+        profit = 0
+        for i in range(len(prices)):
+            profit = max(profit + (prices[i] - prices[i-1]), profit)
+        return profit
+
 print(maxProfit([7,1,5,3,6,4]), 7)
 print(maxProfit([1,2,3,4,5]), 4)
