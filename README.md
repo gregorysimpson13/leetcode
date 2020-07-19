@@ -38,8 +38,6 @@ EASY - https://leetcode.com/problems/merge-two-binary-trees/
 
 MEDIUM: https://leetcode.com/problems/guess-number-higher-or-lower-ii/
 
-### Linked List
-
 #### Dont know yet
 
 https://leetcode.com/problems/merge-intervals/

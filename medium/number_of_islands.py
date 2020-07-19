@@ -23,34 +23,36 @@
 # Output: 3
 
 
-
-# grid is a list of lists of strings
-def number_of_islands(grid):
-    rows, cols = len(grid), len(grid[0])
-    def get_island(y, x, visited=[]):
-        if y < 0 or y >= rows or x < 0 or x >= cols:
-            return
-        if grid[y][x] == '0' or (y,x) in visited:
-            return
-        visited.append((y,x))
-        get_island(y-1, x, visited)
-        get_island(y+1, x, visited)
-        get_island(y, x-1, visited)
-        get_island(y, x+1, visited)
-        grid[y][x] = '0'
-        return
-    ans = 0
-    for y in range(rows):
-        for x in range(cols):
-            if grid[y][x] == '1':
-                get_island(y, x)
-                ans += 1
-    return ans
+from typing import List
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        if not grid or not grid[0]: return 0
+        rows, cols = len(grid), len(grid[0])
+        result = 0
+        def bfs(row, col):
+            queue = [(row, col)]
+            visited = set()
+            while queue:
+                r, c = queue.pop(0)
+                if (r,c) in visited or r < 0 or r >= rows or c < 0 or c >= cols:
+                    continue
+                if grid[r][c] == "0":
+                    continue
+                grid[r][c] = "0"
+                for next_r,next_c in [(0,1), (0,-1), (1,0), (-1,0)]:
+                    queue.append((r+next_r, c+next_c))
+                visited.add((r,c))
+        for row in range(rows):
+            for col in range(cols):
+                if grid[row][col] == "1":
+                    bfs(row, col)
+                    result = result + 1
+        return result
 
 if __name__ == "__main__":
     # example one
     input1 = [['1', '1', '1', '1', '0'], ['1', '1', '0', '1', '0'], ['1', '1', '0', '0', '0'], ['0','0','0','0','0']]
-    print(number_of_islands(input1) == 1)
+    print(Solution().numIslands(input1) == 1)
     # example two
     input2 = [['1', '1', '0', '0', '0'], ['1', '1', '0', '0', '0'], ['0', '0', '1', '0', '0'], ['0', '0', '0', '1', '1']]
-    print(number_of_islands(input2) == 3)
+    print(Solution().numIslands(input2) == 3)
