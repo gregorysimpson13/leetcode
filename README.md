@@ -12,6 +12,7 @@ MEDIUM: https://leetcode.com/problems/spiral-matrix/
 (COMMON INTERVIEW) MEDIUM: https://leetcode.com/problems/word-ladder/ - (MUST DO)
 https://leetcode.com/problems/search-a-2d-matrix-ii/
 https://leetcode.com/discuss/interview-question/353827/Google-or-Onsite-or-Shortest-Path-Breaking-Through-Wallss
+https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/
 
 ### Dynamic Programming
 
