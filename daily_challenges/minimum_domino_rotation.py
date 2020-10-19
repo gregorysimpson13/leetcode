@@ -1,3 +1,5 @@
+# Runtime: O(n); beats 97.54%
+# Space: O(1)
 class Solution:
     def minDominoRotations(self, A: List[int], B: List[int]) -> int:
         def rotations(target):
