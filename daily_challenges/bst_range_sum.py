@@ -1,4 +1,4 @@
-# Runtime: O(n); beats 38.09%
+# Runtime: O(n); beats 41.18%
 # Space: O(1)
 # Definition for a binary tree node.
 # class TreeNode:
@@ -8,11 +8,8 @@
 #         self.right = right
 class Solution:
     def rangeSumBST(self, root: TreeNode, low: int, high: int) -> int:
-        self.retVal = 0
         def dfs(node=root):
-            if not node: return
-            dfs(node.left)
-            if low <= node.val <= high: self.retVal += node.val
-            dfs(node.right)
-        dfs()
-        return self.retVal
+            if not node: return 0
+            val = node.val if low <= node.val <= high else 0
+            return val + dfs(node.left) + dfs(node.right)
+        return dfs()
