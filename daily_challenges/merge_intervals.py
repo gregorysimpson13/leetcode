@@ -1,4 +1,4 @@
-# Runtime: O(n); 44.33%
+# Runtime: O(n log n); 44.33%
 # Space: O(1)
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
